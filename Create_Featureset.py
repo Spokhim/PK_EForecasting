@@ -17,9 +17,9 @@ import pycatch22
 
 patient = "1110"
 #start_root = os.getcwd()+'/Ignore/Output/'
-start_root = '/data/gpfs/projects/punim1887/msg-seizure-forecasting/data/train/' 
+start_root = '/data/gpfs/projects/punim1887/msg-seizure-forecasting/data/' 
 # root is the folder/directory of the patient.  
-root = start_root + patient + '/'
+root = start_root + 'train/' + patient + '/'
 # Load the labels
 labels = pd.read_csv(start_root + 'train_labels.csv')
 
@@ -49,7 +49,7 @@ for file_path in files:
     # Add in the training labels. 
     # No clue which ones are the updated ones, so just use the old ones. 
     # Get rid of the os.cwd() component of the path to match it with the labels csv
-    path = file_path.replace(start_root, '')
+    path = file_path.replace(start_root + 'train/', '')
     label = labels[['label']].loc[labels['filepath'] == str(path)].values[0]
 
     data['label'] = np.repeat(label, repeats = data.shape[0])
