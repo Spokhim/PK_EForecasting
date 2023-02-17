@@ -13,8 +13,8 @@ from pathlib import Path
 
 import autosklearn.classification
 from sklearn.model_selection import train_test_split
-from joblib import dump, load
 from sklearn import metrics
+import pickle
 
 # Things to change:
 
@@ -53,4 +53,4 @@ print("Accuracy: ", automl.score(testing_data, testing_target))
 print("AUC: ", metrics.roc_auc_score(testing_target,automl.predict(testing_data)))
 
 # Save the model
-dump(automl, 'Fast_automl_acc.joblib')
+pickle.dump(automl, open('Faster_automl_acc.pkl', 'wb'))
