@@ -50,6 +50,7 @@ automl.fit(training_data, training_target)
 
 # Score the classifier on the testing data
 print("Accuracy: ", automl.score(testing_data, testing_target))
+print("AUC: ", metrics.roc_auc_score(testing_target,automl.predict(testing_data)))
 
 # Save the model
 dump(automl, 'Fast_automl_acc.joblib')
