@@ -58,3 +58,15 @@ print("AUC: ", metrics.roc_auc_score(testing_target,automl.predict(testing_data)
 
 # Save the model
 pickle.dump(automl, open('Faster_automl_acc.pkl', 'wb'))
+
+# Print out all the ways to inspet the results
+print('Basic Statistics')
+print(automl.sprint_statistics())
+#print('Performance over Time')
+#print(automl.performance_over_time_)
+print('Evaluated Models')
+print(automl.show_models())
+print('Leaderboard')
+print(automl.leaderboard())
+print('CV Results')
+print(automl.cv_results_)
