@@ -39,11 +39,15 @@ testing_data = df[col_names].iloc[int(df.shape[0]*0.75):,:]
 training_target = df['label'].iloc[0:int(df.shape[0]*0.75)]
 testing_target = df['label'].iloc[int(df.shape[0]*0.75):]
 
+# Need to adjust the metric
+metric = autosklearn.metrics.roc_auc
+
 # Initialize the auto-sklearn classifier
 automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=80000,  #86400s in a day - 1 day limit
                                                            per_run_time_limit=10000,
                                                            n_jobs=-1,
-                                                           memory_limit = 500000000000)  # This needs to be set or else you may error out. 
+                                                           memory_limit = 500000000000,  # This needs to be set or else you may error out.
+                                                           metric = metric)  # Metric needs to be set to not accuracy due to imbalanced dataset 
 
 # Fit the classifier on the training data
 automl.fit(training_data, training_target)
