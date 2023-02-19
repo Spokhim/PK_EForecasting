@@ -9,7 +9,7 @@
 #SBATCH --nodes=1
 
 # The name of the job:
-#SBATCH --job-name="Fast_AutoML"
+#SBATCH --job-name="All_AutoML"
 
 # Maximum number of tasks/CPU cores used by the job:
 #SBATCH --ntasks=1
