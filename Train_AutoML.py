@@ -23,7 +23,8 @@ df = pd.read_pickle("Patient_1110.pkl")
 # Specify Columns to Use as Input (in addition to the time-stamp) noting that we'll take all of the catch22 features.
 cols = ["acc_mag","acc_theta","acc_phi","bvp","eda","hr"]
 # Specify Columns to use as Input which do not get transformed to feature space
-cols_no_transform = ["time_of_day", "temp"]
+cols_no_transform = ["time_of_day"]
+#temp not included for now
 
 ##################################################################################################################
 
