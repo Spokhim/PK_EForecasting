@@ -15,7 +15,7 @@ import pycatch22
 
 # Stuff that you might need to change: (aka paths to the data)
 
-patient = "1110"
+patient = "1876"
 #start_root = os.getcwd()+'/Ignore/Output/'
 start_root = '/data/gpfs/projects/punim1887/msg-seizure-forecasting/data/' 
 # root is the folder/directory of the patient.  
