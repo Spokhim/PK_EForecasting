@@ -19,7 +19,7 @@ import pickle
 # Things to change:
 
 # Import the Data
-df = pd.read_pickle("Patient_1110.pkl")
+df = pd.read_pickle("Patient_1876.pkl")
 # Specify Columns to Use as Input (in addition to the time-stamp) noting that we'll take all of the catch22 features.
 cols = ["acc_mag","acc_theta","acc_phi","bvp","eda","hr"]
 # Specify Columns to use as Input which do not get transformed to feature space
@@ -47,7 +47,7 @@ metric = autosklearn.metrics.roc_auc
 
 # Initialize the auto-sklearn classifier
 automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=80000,  #86400s in a day - 1 day limit
-                                                           per_run_time_limit=10000,
+                                                           per_run_time_limit=20000,
                                                            n_jobs=-1,
                                                            memory_limit = 500000000000,  # This needs to be set or else you may error out.
                                                            metric = metric)  # Metric needs to be set to not accuracy due to imbalanced dataset 
