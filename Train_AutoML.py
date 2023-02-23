@@ -46,7 +46,7 @@ testing_target = df['label'].iloc[int(df.shape[0]*0.75):]
 metric = autosklearn.metrics.roc_auc
 
 # Initialize the auto-sklearn classifier
-automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=80000,  #86400s in a day - 1 day limit
+automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=60000,  #86400s in a day - 1 day limit
                                                            per_run_time_limit=20000,
                                                            n_jobs=-1,
                                                            memory_limit = 500000000000,  # This needs to be set or else you may error out.
