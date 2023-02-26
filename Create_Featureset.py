@@ -16,7 +16,7 @@ import RandFuncs
 
 # Stuff that you might need to change: (aka paths to the data)
 
-patient = "2002"
+patient = str(sys.argv[1])
 #start_root = os.getcwd()+'/Ignore/Output/'
 start_root = '/data/gpfs/projects/punim1887/msg-seizure-forecasting/data/' 
 # root is the folder/directory of the patient.  

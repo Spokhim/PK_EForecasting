@@ -32,6 +32,9 @@
 # The maximum running time of the job in days-hours:mins:sec
 #SBATCH --time=0-24:0:00
 
+# Array Job
+#SBATCH --array=1869,2002,1904,1876,1110,1965
+
 # check that the script is launched with sbatch
 if [ "x$SLURM_JOB_ID" == "x" ]; then
    echo "You need to submit your job to the queuing system with sbatch"
@@ -44,7 +47,7 @@ fi
 module load gcccore/11.2.0 python/3.9.6
 
 # The job command(s):
-python3 Create_Featureset.py
+python3 Create_Featureset.py ${SLURM_ARRAY_TASK_ID}
 
 ##DO NOT ADD/EDIT BEYOND THIS LINE##
 ##Job monitor command to list the resource usage
