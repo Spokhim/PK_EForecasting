@@ -147,7 +147,7 @@ for k in np.arange(np.floor(file_len/number)):
 # Create column names
 feature_names = np.loadtxt("Catch22_Featurenames",dtype=str)
 col_names = [i + "_" + j for i in cols for j in feature_names]
-col_names = col_names + ["utc_timestamp"] + ["label"]
+col_names = col_names + ["utc_timestamp"] + ["label"] + ["acc_quality"] + ["bvp_quality"] + ["eda_quality"]
 
 # Create dataframe
 df = pd.DataFrame(li,columns=col_names)
