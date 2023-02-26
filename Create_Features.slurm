@@ -12,7 +12,7 @@
 #SBATCH --job-name="Create_Features"
 
 # Maximum number of tasks/CPU cores used by the job:
-#SBATCH --ntasks=1
+#SBATCH --ntasks=4
 #SBATCH --cpus-per-task=1
 
 # The amount of memory in megabytes per node:

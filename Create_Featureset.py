@@ -12,10 +12,11 @@ from scipy.fft import fft, fftfreq
 from pathlib import Path
 
 import pycatch22
+import RandFuncs
 
 # Stuff that you might need to change: (aka paths to the data)
 
-patient = "1876"
+patient = "2002"
 #start_root = os.getcwd()+'/Ignore/Output/'
 start_root = '/data/gpfs/projects/punim1887/msg-seizure-forecasting/data/' 
 # root is the folder/directory of the patient.  
@@ -23,6 +24,7 @@ root = start_root + 'train/' + patient + '/'
 # Load the labels
 labels = pd.read_csv(start_root + 'train_labels.csv')
 
+f_s=128
 ########################
 
 
@@ -78,6 +80,10 @@ data["acc_theta"] = np.arctan2(data["acc_y"],data["acc_x"])
 # Then get phi
 data["acc_phi"] = np.arccos(data["acc_z"]/data["acc_mag"])
 
+# Add in the data_quality features
+data["acc_quality"] = RandFuncs.acc_quality_adj(data, f_s)
+data["bvp_quality"] = RandFuncs.bvp_quality_adj(data, f_s)
+data["eda_quality"] = RandFuncs.eda_quality_adj(data, f_s)
 
 # Time to Apply Catch22
 
@@ -129,13 +135,10 @@ for k in np.arange(np.floor(file_len/number)):
     li1.append(window['utc_timestamp'].iloc[0])    
     # Record the label of the start of each window
     li1.append(window['label'].iloc[0])
-
-    # # Record the utc_timestamp of the start of each window
-    # li1.append(window['utc_timestamp'].iloc[0])
-    # # Turn this list into an array 
-    # li1 = np.array(li1)
-    # # Flatten this first list
-    # li1 = li1.flatten()
+    # Record the three quality metrics at the start of each window
+    li1.append(window['acc_quality'].iloc[0])
+    li1.append(window['bvp_quality'].iloc[0])
+    li1.append(window['eda_quality'].iloc[0])
 
     # Add to list saving data per window
     li.append(li1)
@@ -150,4 +153,4 @@ col_names = col_names + ["utc_timestamp"] + ["label"]
 df = pd.DataFrame(li,columns=col_names)
 
 # Save it as a pickle. 
-df.to_pickle("Patient_" + patient + ".pkl")
+df.to_pickle("Patient_" + patient + "_Data.pkl")
